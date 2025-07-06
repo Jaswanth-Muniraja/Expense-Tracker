@@ -17,7 +17,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173", 
+    origin: "https://expense-tracker-nl68-6ccuz1fhz-jaswanths-projects-7b93a134.vercel.app/", // || "http://localhost:5173", 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // ✅ Required when using Authorization header
   })
