@@ -13,15 +13,20 @@ const dashboardRoute = require('./routes/dashboardRoutes.js')
 const app = express()
 
 
-//middleware to handle CORS
+const allowedOrigins = [
+  'https://expense-tracker-nl68-dd1450pou-jaswanths-projects-7b93a134.vercel.app'
+];
 
-app.use(
-  cors({
-    origin: "https://expense-tracker-nl68-6ccuz1fhz-jaswanths-projects-7b93a134.vercel.app/", // || "http://localhost:5173", 
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // ✅ Required when using Authorization header
-  })
-);
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 
 app.use(express.json())
 
